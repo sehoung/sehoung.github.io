@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Soung Eil Houng — Seismic Hazard &amp; Earthquake Risk</title>
+<meta name="description" content="Soung Eil Houng, Ph.D. candidate in Civil and Environmental Engineering at UC Berkeley. Research on probabilistic seismic hazard and earthquake risk analysis." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     THEME — Berkeley-grounded palette. Change --accent to recolor.
+     ============================================================ */
+  :root {
+    --bg:          #ffffff;
+    --bg-soft:     #f5f7fa;
+    --ink:         #1a222c;
+    --ink-soft:    #5a6675;
+    --line:        #e2e7ee;
+    --brand:       #003262;   /* Berkeley blue — headings, nav, links */
+    --accent:      #c99700;   /* muted California gold — decorative accents */
+    --accent-soft: #fbf3dd;
+    --brand-soft:  #e8eef5;
+    --card:        #ffffff;
+    --shadow:      0 1px 2px rgba(0,30,60,.05), 0 10px 28px rgba(0,30,60,.06);
+
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    --font-head: "Newsreader", Georgia, serif;
+    --maxw: 1060px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+  body {
+    margin: 0; font-family: var(--font-body);
+    color: var(--ink); background: var(--bg);
+    line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--brand); }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- NAV ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255,255,255,.88);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+  .brand { font-family: var(--font-head); font-weight: 600; font-size: 1.15rem; color: var(--brand); letter-spacing: -.01em; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a { color: var(--ink-soft); font-weight: 500; font-size: .92rem; text-decoration: none; }
+  .nav-links a:hover { color: var(--brand); }
+  @media (max-width: 680px) { .nav-links { display: none; } }
+
+  /* ---------- HERO ---------- */
+  .hero { padding: 68px 0 52px; }
+  .hero-grid { display: grid; grid-template-columns: 210px 1fr; gap: 46px; align-items: center; }
+  .avatar {
+    width: 190px; height: 190px; border-radius: 50%;
+    object-fit: cover; border: 5px solid var(--bg);
+    box-shadow: var(--shadow); background: var(--brand-soft);
+  }
+  .hero h1 {
+    font-family: var(--font-head); font-weight: 600;
+    font-size: clamp(2rem, 4vw, 2.7rem); letter-spacing: -.015em;
+    margin: 0 0 4px; color: var(--brand);
+  }
+  .hero .hanja { font-size: 1.05rem; color: var(--ink-soft); font-weight: 400; }
+  .hero .role { font-size: 1.12rem; font-weight: 600; margin: 10px 0 4px; }
+  .hero .affil { color: var(--ink-soft); margin: 0 0 20px; }
+  .socials { display: flex; gap: 12px; flex-wrap: wrap; }
+  .socials a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 10px;
+    border: 1px solid var(--line); color: var(--ink-soft);
+    background: var(--card); transition: all .18s ease;
+  }
+  .socials a:hover { color: var(--brand); border-color: var(--brand); background: var(--brand-soft); transform: translateY(-2px); }
+  .socials svg { width: 20px; height: 20px; }
+  @media (max-width: 700px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 26px; justify-items: center; }
+    .socials { justify-content: center; }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 52px 0; border-top: 1px solid var(--line); }
+  section.tint { background: var(--bg-soft); }
+  .section-title {
+    font-family: var(--font-head); font-weight: 600; font-size: 1.6rem;
+    margin: 0 0 26px; letter-spacing: -.01em; color: var(--brand);
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .section-title::after { content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); border-radius: 2px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1.5fr; gap: 46px; }
+  @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; gap: 36px; } }
+
+  .interests { list-style: none; padding: 0; margin: 0; }
+  .interests li { display: flex; align-items: center; gap: 11px; padding: 7px 0; }
+  .interests li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+
+  /* ---------- TIMELINE (education / employment) ---------- */
+  .track-label {
+    font-size: .78rem; text-transform: uppercase; letter-spacing: .07em;
+    color: var(--ink-soft); font-weight: 600; margin: 22px 0 10px;
+  }
+  .track-label:first-child { margin-top: 0; }
+  .tl-item {
+    display: grid; grid-template-columns: 132px 1fr; gap: 16px;
+    padding: 9px 0; border-bottom: 1px dashed var(--line);
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-date { color: var(--accent); font-weight: 600; font-size: .86rem; font-variant-numeric: tabular-nums; padding-top: 2px; }
+  .tl-body { font-size: .96rem; }
+  .tl-body .place { color: var(--ink-soft); }
+  @media (max-width: 520px) { .tl-item { grid-template-columns: 1fr; gap: 2px; } }
+
+  /* ---------- PUBLICATIONS ---------- */
+  .pub-list { counter-reset: pub; list-style: none; padding: 0; margin: 0; }
+  .pub-item {
+    position: relative; padding: 16px 0 16px 44px;
+    border-bottom: 1px solid var(--line);
+  }
+  .pub-item:last-child { border-bottom: none; }
+  .pub-item::before {
+    counter-increment: pub; content: counter(pub);
+    position: absolute; left: 0; top: 16px;
+    width: 30px; height: 30px; border-radius: 8px;
+    background: var(--brand-soft); color: var(--brand);
+    font-size: .82rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pub-title { font-weight: 600; margin: 0 0 4px; line-height: 1.4; }
+  .pub-authors { font-size: .93rem; margin: 0 0 2px; }
+  .pub-venue { color: var(--ink-soft); font-size: .89rem; margin: 0 0 9px; }
+  .pub-venue .venue { font-style: italic; }
+  .pub-links { display: flex; gap: 7px; flex-wrap: wrap; }
+  .pub-links a {
+    font-size: .78rem; font-weight: 600; padding: 3px 11px; text-decoration: none;
+    border: 1px solid var(--line); border-radius: 999px; color: var(--ink-soft);
+  }
+  .pub-links a:hover { color: var(--brand); border-color: var(--brand); background: var(--brand-soft); }
+  .submitted { display: inline-block; font-size: .72rem; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 1px 8px; border-radius: 999px; margin-left: 6px; vertical-align: middle; }
+  .granted { display: inline-block; font-size: .72rem; font-weight: 700; color: #fff; background: var(--brand); padding: 1px 8px; border-radius: 999px; margin-left: 6px; vertical-align: middle; }
+  .me { color: var(--brand); font-weight: 700; }   /* highlights author's own name */
+
+  /* ---------- EXPERIENCE LISTS ---------- */
+  .exp-block { margin-bottom: 30px; }
+  .exp-block:last-child { margin-bottom: 0; }
+  .exp-block h3 { font-size: 1.02rem; margin: 0 0 12px; color: var(--brand); font-weight: 600; }
+  .exp-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px;
+    padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: .94rem;
+  }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-row .when { color: var(--accent); font-weight: 600; font-size: .84rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .plain-list { margin: 0; padding: 0; list-style: none; }
+  .plain-list li { padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: .94rem; }
+  .plain-list li:last-child { border-bottom: none; }
+  @media (max-width: 520px) { .exp-row { grid-template-columns: 1fr; gap: 1px; } }
+
+  /* ---------- CONTACT ---------- */
+  .contact-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 26px 28px; box-shadow: var(--shadow); max-width: 420px;
+  }
+  .contact-card .label { font-size: .76rem; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-soft); margin: 0 0 6px; }
+  .contact-card .value { font-weight: 600; font-size: 1.05rem; margin: 0; }
+
+  footer { padding: 30px 0; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: .86rem; text-align: center; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand">Soung Eil Houng</div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#employment">Employment</a>
+      <a href="#publications">Publications</a>
+      <a href="#patents">Patents</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<div class="wrap hero">
+  <div class="hero-grid">
+    <!-- Replace src with your own photo file, e.g. src="photo.jpg" -->
+    <img class="avatar" src="https://placehold.co/380x380/e8eef5/003262?text=SEH" alt="Portrait of Soung Eil Houng" />
+    <div>
+      <h1>Soung Eil Houng</h1>
+      <div class="hanja">홍성일 · 洪性一</div>
+      <p class="role">Ph.D. Candidate, Civil &amp; Environmental Engineering</p>
+      <p class="affil">University of California, Berkeley</p>
+      <div class="socials">
+        <a href="mailto:shoung@berkeley.edu" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </a>
+        <a href="https://scholar.google.com/citations?user=Ym2fkggAAAAJ&hl=en" aria-label="Google Scholar" title="Google Scholar">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 1 8l11 6 9-4.9V17h2V8L12 2z"/><path d="M6 12v3.5c0 1.7 2.7 3.5 6 3.5s6-1.8 6-3.5V12l-6 3.3L6 12z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </a>
+        <a href="https://github.com/sehoung" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+        </a>
+        <!-- Add your ORCID URL if you have one -->
+        <a href="https://www.linkedin.com/in/soungeil-houng-93863b19b/" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.24 8.25h4.5V24h-4.5V8.25zM8.25 8.25h4.31v2.15h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.98c0-1.66-.03-3.8-2.31-3.8-2.32 0-2.67 1.81-2.67 3.68V24h-4.5V8.25z"/></svg>
+        </a>
+        <a href="https://orcid.org/0000-0001-6873-5327" aria-label="ORCID iD" title="ORCID iD">
+          <svg viewBox="0 0 256 256" fill="currentColor"><path fill-rule="evenodd" d="M0 128a128 128 0 1 0 256 0 128 128 0 1 0-256 0ZM70.9 79.1H86.3V186.2H70.9Zm38 0h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8Zm15.4 13.9v79.4h24.5c34.9 0 42.9-26.5 42.9-39.7 0-21.5-13.7-39.7-43.7-39.7ZM78.6 46.7a10.1 10.1 0 1 0 0 20.2 10.1 10.1 0 1 0 0-20.2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap two-col">
+    <div>
+      <h2 class="section-title">About</h2>
+      <p style="margin:0;">
+        I develop fast, scalable computational methods for earthquake risk
+        and probabilistic seismic hazard analysis. My recent work uses
+        adaptive importance sampling, linearized ground-motion–fragility
+        coupling, and probabilistic PCA to quantify seismic hazard and its
+        uncertainties for critical infrastructure. Before Berkeley, I spent
+        six years as a seismic hazard analyst and seismologist in Korea, with
+        earlier training in seismology and earth system sciences.
+      </p>
+    </div>
+    <div>
+      <h2 class="section-title">Research Interests</h2>
+      <ul class="interests">
+        <li>Earthquake risk modeling for infrastructure</li>
+        <li>Importance Sampling and Uncertainty Quantification</li>
+        <li>AI and ML methods for hazard and risk</li>
+        <li>Probabilistic seismic hazard analysis (PSHA)</li>
+        <li>Engineering seismology and ground motion modeling</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education" class="tint">
+  <div class="wrap">
+    <h2 class="section-title">Education</h2>
+
+    <div class="track-label">Civil Engineering</div>
+    <div class="tl-item"><div class="tl-date">2024 – present</div><div class="tl-body">Ph.D. candidate, Civil &amp; Environmental Engineering <span class="place">· UC Berkeley</span></div></div>
+    <div class="tl-item"><div class="tl-date">2024 – 2025</div><div class="tl-body">M.S., Civil &amp; Environmental Engineering <span class="place">· UC Berkeley</span></div></div>
+    <div class="tl-item"><div class="tl-date">2023</div><div class="tl-body">Ph.D. student, Civil Engineering <span class="place">· NYU (transferred to UC Berkeley)</span></div></div>
+
+    <div class="track-label">Earth Science</div>
+    <div class="tl-item"><div class="tl-date">2013 – 2015</div><div class="tl-body">Ph.D. candidate (ABD), Geological Science, Seismology <span class="place">· Yonsei University</span></div></div>
+    <div class="tl-item"><div class="tl-date">2011 – 2013</div><div class="tl-body">M.S., Geological Science, Seismology <span class="place">· Yonsei University</span></div></div>
+    <div class="tl-item"><div class="tl-date">2006 – 2011</div><div class="tl-body">B.S., Earth System Sciences <span class="place">· Yonsei University</span></div></div>
+  </div>
+</section>
+
+<!-- ================= EMPLOYMENT ================= -->
+<section id="employment">
+  <div class="wrap">
+    <h2 class="section-title">Employment</h2>
+    <div class="exp-row"><div>Seismic Hazard Analyst · <a href="https://www.khnp.co.kr/eng/main.do">Korea Hydro &amp; Nuclear Power</a>, Central Research Institute</div><div class="when">2017 – 2023</div></div>
+    <div class="exp-row"><div>Seismologist · National Institute of Meteorological Sciences (NIMS)</div><div class="when">2015 – 2017</div></div>
+  </div>
+</section>
+
+<!-- ================= JOURNAL PUBLICATIONS ================= -->
+<section id="publications" class="tint">
+  <div class="wrap">
+    <h2 class="section-title">Journal Publications</h2>
+
+    <ol class="pub-list">
+      <li class="pub-item">
+        <p class="pub-title">Scalable Scenario-based Earthquake Risk Modeling via Linearized Ground-Motion–Fragility Coupling and PPCA <span class="submitted">submitted</span></p>
+        <p class="pub-authors"><span class="me">Houng, S.E.</span>, Ceferino, L.</p>
+        <p class="pub-venue">2026</p>
+        <div class="pub-links">
+          <a href="https://doi.org/10.31224/6578">Preprint</a>
+          <a href="https://github.com/sehoung/linearization_PPCA">Code</a>
+        </div>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Fast Propagation of Epistemic Uncertainty in Seismic Hazard via Adaptive Importance Sampling</p>
+        <p class="pub-authors"><span class="me">Houng, S.E.</span>, Ceferino, L., Abrahamson, N.</p>
+        <p class="pub-venue"><span class="venue">Bulletin of the Seismological Society of America</span> · 2026</p>
+        <div class="pub-links">
+          <a href="https://doi.org/10.1785/0120250205">Link</a>
+          <a href="https://github.com/sehoung/GPMC_AIS_PSHA">Code</a>
+        </div>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Fast Probabilistic Seismic Hazard Analysis through Adaptive Importance Sampling</p>
+        <p class="pub-authors"><span class="me">Houng, S.E.</span>, Ceferino, L.</p>
+        <p class="pub-venue"><span class="venue">Bulletin of the Seismological Society of America</span>, 115, 646–663 · 2025</p>
+        <div class="pub-links">
+          <a href="https://doi.org/10.1785/0120240153">Link</a>
+          <a href="https://github.com/sehoung/ais_psha">Code</a>
+        </div>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Discrimination between natural earthquakes and explosions based on the azimuthal distribution of S/P amplitude ratios</p>
+        <p class="pub-authors"><span class="me">Houng, S.E.</span></p>
+        <p class="pub-venue"><span class="venue">Bulletin of the Seismological Society of America</span>, 108, 218–229 · 2018</p>
+        <div class="pub-links">
+          <a href="https://pubs.geoscienceworld.org/ssa/bssa/article-abstract/525584/discrimination-between-natural-earthquakes-and?redirectedFrom=fulltext">Link</a>
+          <a href="https://drive.google.com/file/d/1u4gnJtpE4o_mOOrNpLA9qzbyzlXmABX3/view?usp=sharing">PDF</a>
+        </div>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Dynamic seismic response of a stable intraplate region to a megathrust earthquake</p>
+        <p class="pub-authors"><span class="me">Houng, S.E.</span>, Lee, J., Hong, T.-K.</p>
+        <p class="pub-venue"><span class="venue">Tectonophysics</span>, 689, 67–78 · 2016</p>
+        <div class="pub-links">
+          <a href="https://doi.org/10.1016/j.tecto.2016.07.033">Link</a>
+          <a href="https://drive.google.com/file/d/1uC218zz04T_99lHSVxeTVLoC4ZxBjkr3/view?usp=sharing">PDF</a>
+        </div>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Seismotectonic properties and zonation of the far-eastern Eurasian plate around the Korean Peninsula</p>
+        <p class="pub-authors">Hong, T.-K., Park, S., <span class="me">Houng, S.E.</span></p>
+        <p class="pub-venue"><span class="venue">Pure and Applied Geophysics</span>, 173, 1175–1195 · 2016</p>
+        <div class="pub-links">
+          <a href="https://link.springer.com/article/10.1007/s00024-015-1170-2">Link</a>
+          <a href="https://drive.google.com/file/d/1G5lEeJwygllpEPFEt7jhcwLmIXHm5iNu/view?usp=sharing">PDF</a>
+        </div>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Long-term evolution of intraplate seismicity in stress shadows after a megathrust</p>
+        <p class="pub-authors">Hong, T.-K., Lee, J., <span class="me">Houng, S.E.</span></p>
+        <p class="pub-venue"><span class="venue">Physics of the Earth and Planetary Interiors</span>, 245, 59–70 · 2015</p>
+        <div class="pub-links">
+          <a href="https://doi.org/10.1016/j.pepi.2015.05.009">Link</a>
+          <a href="https://drive.google.com/file/d/1nmL-2Ub8osRPinQIXn8bp3tK1GDPr3S9/view?usp=sharing">PDF</a>
+        </div>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Temporal changes of medium properties during explosive volcanic eruption</p>
+        <p class="pub-authors">Hong, T.-K., <span class="me">Houng, S.E.</span>, Jo, E.</p>
+        <p class="pub-venue"><span class="venue">Geophysical Research Letters</span>, 41, 1944–1950 · 2014</p>
+        <div class="pub-links">
+          <a href="http://onlinelibrary.wiley.com/doi/10.1002/2014GL059408/full">Link</a>
+          <a href="https://drive.google.com/file/d/1JmhIIDFSwEO_qgW2Fchdwgw-EIjyiIRb/view?usp=sharing">PDF</a>
+        </div>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Probabilistic analysis of the Korean historical earthquake records</p>
+        <p class="pub-authors"><span class="me">Houng, S.E.</span>, Hong, T.-K.</p>
+        <p class="pub-venue"><span class="venue">Bulletin of the Seismological Society of America</span>, 103, 2782–2796 · 2013</p>
+        <div class="pub-links">
+          <a href="https://doi.org/10.1785/0120120318">Link</a>
+          <a href="https://drive.google.com/file/d/18q3Z9yu5Mnu201kD-VJOs1MYCuimUm7j/view?usp=sharing">PDF</a>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= PATENTS ================= -->
+<section id="patents">
+  <div class="wrap">
+    <h2 class="section-title">Patents</h2>
+    <ol class="pub-list">
+      <li class="pub-item">
+        <p class="pub-title">Computational framework for numerical probabilistic seismic hazard analysis (PSHA) <span class="submitted">pending</span></p>
+        <p class="pub-authors"><span class="me">Houng, S.</span>, Ceferino, L.</p>
+        <p class="pub-venue">WIPO · WO2026006061A1 · 2026</p>
+      </li>
+      <li class="pub-item">
+        <p class="pub-title">Method for automatically discriminating earthquake vibratory motion from erroneous signal records at the seismic system of a nuclear power plant <span class="granted">granted</span></p>
+        <p class="pub-authors"><span class="me">Houng, S.</span>, Park, D., Kim, H.-S.</p>
+        <p class="pub-venue">KIPO (Korea) · KR 10-2587912 · 2020</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience" class="tint">
+  <div class="wrap">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-block">
+      <h3>Scholarships &amp; Fellowships</h3>
+      <div class="exp-row"><div>Graduate Student Researcher, UC Berkeley</div><div class="when">2024 – present</div></div>
+      <div class="exp-row"><div>AI for CEE Education GSR, UC Berkeley</div><div class="when">Jan – May 2026</div></div>
+      <div class="exp-row"><div>UC Berkeley CEE SEMM Fellowship</div><div class="when">2025</div></div>
+      <div class="exp-row"><div>Graduate Student Instructor (CE294 Disaster Risk Analysis), UC Berkeley</div><div class="when">Fall 2024</div></div>
+      <div class="exp-row"><div>School of Engineering Fellowship, New York University</div><div class="when">2023</div></div>
+      <div class="exp-row"><div>Brain Korea 21 Plus Scholarship, Yonsei University</div><div class="when">2013 – 2015</div></div>
+      <div class="exp-row"><div>Brain Korea 21 Scholarship, Yonsei University</div><div class="when">2011 – 2013</div></div>
+      <div class="exp-row"><div>Korea National Oil Corporation Scholarship, Yonsei University</div><div class="when">2011</div></div>
+      <div class="exp-row"><div>National Science &amp; Technology Scholarship, Yonsei University</div><div class="when">2010</div></div>
+    </div>
+
+    <div class="exp-block">
+      <h3>Invited Talks &amp; Seminars</h3>
+      <ul class="plain-list">
+        <li>Scalable Scenario-based Earthquake Risk Modeling via Linearized Ground-Motion–Fragility Coupling and PPCA — NHERI GSC RSR meeting (Feb. 2026)</li>
+        <li>Adaptive Importance Sampling–based PSHA computational framework — KHNP-CRI (Jul. 2025)</li>
+        <li>PSHA: Theory, Practice, and Numerical Computation — KIGAM (Apr. 2025)</li>
+        <li>Current State-of-the-Art PSHA for Korea's NPPs — KAERI (Jul. 2020)</li>
+        <li>Synthesis of Strong Ground Motion using Empirical Green's Function — Korea Institute of Nuclear Safety (2018)</li>
+        <li>Synthesis of Strong Ground Motion using Empirical Green's Function — KIGAM Earthquake Research Center (Feb. 2018)</li>
+      </ul>
+    </div>
+
+    <div class="exp-block">
+      <h3>Journal Review</h3>
+      <p style="margin:0; font-size:.94rem; color:var(--ink-soft);">
+        Earthquake Spectra · Scientific Reports · Pure and Applied Geophysics ·
+        Stochastic Environmental Research and Risk Assessment · Geosciences Journal ·
+        International Journal of Data Science and Analytics
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-card">
+      <p class="label">Email</p>
+      <p class="value"><a href="mailto:shoung@berkeley.edu">shoung [at] berkeley.edu</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Soung Eil Houng · Civil &amp; Environmental Engineering, UC Berkeley</div>
+</footer>
+
+<script>
+  /* Open external links (http/https) in a new tab.
+     In-page nav (#...) and mailto: links stay in the same tab. */
+  document.querySelectorAll('a[href^="http"]').forEach(function (link) {
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  });
+</script>
+
+</body>
+</html>
