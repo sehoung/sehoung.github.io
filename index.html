@@ -103,6 +103,8 @@
 
   .two-col { display: grid; grid-template-columns: 1fr 1.5fr; gap: 46px; }
   @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; gap: 36px; } }
+  /* Full-width stacked blocks (About, then Research Interests) */
+  .one-col { display: grid; grid-template-columns: 1fr; gap: 40px; }
 
   .interests { list-style: none; padding: 0; margin: 0; }
   .interests li { display: flex; align-items: center; gap: 11px; padding: 7px 0; }
@@ -234,7 +236,7 @@
 
 <!-- ================= ABOUT ================= -->
 <section id="about">
-  <div class="wrap two-col">
+  <div class="wrap one-col">
     <div>
       <h2 class="section-title">About</h2>
       <p style="margin:0;">
@@ -404,10 +406,11 @@
     <div class="exp-block">
       <h3>Scholarships &amp; Fellowships</h3>
       <div class="exp-row"><div>Graduate Student Researcher, UC Berkeley</div><div class="when">2024 – present</div></div>
-      <div class="exp-row"><div>AI for CEE Education GSR, UC Berkeley</div><div class="when">Jan – May 2026</div></div>
+      <div class="exp-row"><div>Graduate Student Instructor (CE193 Engineering Risk Analysis), UC Berkeley</div><div class="when">Fall 2026</div></div>
+      <div class="exp-row"><div>AI for CEE Education GSR, UC Berkeley</div><div class="when">Spring 2026</div></div>
       <div class="exp-row"><div>UC Berkeley CEE SEMM Fellowship</div><div class="when">2025</div></div>
       <div class="exp-row"><div>Graduate Student Instructor (CE294 Disaster Risk Analysis), UC Berkeley</div><div class="when">Fall 2024</div></div>
-      <div class="exp-row"><div>School of Engineering Fellowship, New York University</div><div class="when">2023</div></div>
+      <div class="exp-row"><div>School of Engineering Fellowship, New York University</div><div class="when">Fall 2023</div></div>
       <div class="exp-row"><div>Brain Korea 21 Plus Scholarship, Yonsei University</div><div class="when">2013 – 2015</div></div>
       <div class="exp-row"><div>Brain Korea 21 Scholarship, Yonsei University</div><div class="when">2011 – 2013</div></div>
       <div class="exp-row"><div>Korea National Oil Corporation Scholarship, Yonsei University</div><div class="when">2011</div></div>
